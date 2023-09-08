@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kids Wardrobe</title>
+    <link href="https://fonts.googleapis.com/css?family=Tangerine" rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/621136387c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(c.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 1300px;
+            padding: 20px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 20px;
+            color: #fff;
+            margin-right: 10px; /* Add margin to create space between icon and text */
+}
+
+        .navbar-menu a {
+            color: #fff;
+            font-size: 13px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 100;
+            padding: 12px 15px;
+            display: inline-block;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        .navbar-menu a:hover {
+            color: #000;
+        }
+
+        .description {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            padding: 0 70px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .description h2 {
+            font-size: 40px;
+            font-family: 'Brush Script MT', cursive;
+            font-weight: 100;
+            color: #fff;
+            letter-spacing: 2px;
+            line-height: 50px;
+        }
+
+        .description h1 {
+            text-shadow: 5px 5px black;
+            font-size: 55px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            line-height: 70px;
+        }
+
+        .description p {
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            font-weight: 100;
+            color: #fff;
+            letter-spacing: 2px;
+            line-height: 25px;
+            margin-bottom: 10px;
+        }
+
+        .description button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .shop{
+            width: 200px;
+            margin: auto;
+            margin-top: 30%;
+        }
+        
+        .shop a{
+            display: block;
+            text-decoration: none;
+            font-family: "Raleway";
+            background: #363957;
+            text-align: center;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .shop a:hover{
+            display: block;
+            text-decoration: none;
+            font-family: "Raleway";
+            background: white;
+            text-align: center;
+            color: black;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        .login-form-container {
+            position: relative;
+        }
+
+        .login-form {
+            display: none;
+            position: absolute;
+            top: 100%; /* Position the form below the login button */
+            right: 0;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Style for the icon */
+        .login-button {
+            cursor: pointer;
+            
+        }
+
+       /* Style for the username and password inputs */
+       .login-form input[type="text"],
+        .login-form input[type="password"],
+        .login-form input[type="submit"] {
+            margin: 5px 0;
+            padding: 8px; /* Adjust padding as needed */
+            width: 100%;
+        }
+        .input-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa; /* Adjust the color as needed */
+        }
+
+        /* Style for the profile icon */
+        .profile-icon {
+          cursor: pointer;
+        }
+        .btn-link button {
+          color: #fff; /* White text */
+          background-color: transparent; /* Transparent background */
+          border-color: transparent; /* Transparent border */
+    }
+
+    /* Change the button text color to black on hover */
+    .btn-link button:hover {
+         color: #000; /* Black text on hover */
+    }
+    </style>
+    <script>
+        // JavaScript to toggle the visibility of the sign-in form
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.querySelector('.login-form');
+            const loginButton = document.querySelector('.login-button');
+
+            loginButton.addEventListener('click', function (event) {
+                event.stopPropagation(); // Prevent the click event from reaching the document
+                loginForm.style.display = loginForm.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Close the form if the user clicks outside of it
+            document.addEventListener('click', function (event) {
+                if (!loginForm.contains(event.target) && loginForm.style.display === 'block') {
+                    loginForm.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light custom-bg">
+        <div class="container">
+            <h6 class="logo"><i class="fas fa-tshirt"></i><small>&nbsp &nbsp Kids Wardrobe</small></h6>
+            <div class="navbar-menu">
+                <a href="website.html" class="btn-link">
+                    <button type="button" class="btn btn-light">Products</button>
+                </a>
+                
+                <a href="checkout.html" class="btn-link">
+                    <button type="button" class="btn btn-light">Cart &nbsp <i class="fa fa-shopping-cart"></i></button>
+                </a>
+                
+                <a href="About Us.html" class="btn-link">
+                    <button type="button" class="btn btn-light">About Us</button>
+                </a>
+                
+                <a href="Contact Us.html#" class="btn-link">
+                    <button type="button" class="btn btn-light">Contact Us</button>
+                </a>
+                
+                <a href="FAQS.html" class="btn-link">
+                    <button type="button" class="btn btn-light">FAQs</button>
+                </a>                
+                
+            </div>
+            <div class="login-form-container login-button">
+                <i class="fas fa-user profile-icon"></i>&nbsp;Log-in/Sign-up
+            </div>
+            <div class="login-form rounded p-4">
+                <form action="login.php" method="POST">
+                    <div style="position: relative;">
+                        <input type="text" placeholder="Username" name="username" required>
+                        <i class="fas fa-user input-icon"></i>
+                    </div>
+                    <div style="position: relative;">
+                        <input type="password" placeholder="Password" name="password" required>
+                        <i class="fas fa-lock input-icon"></i>
+                    </div>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+    </nav>
+
+    <div class="description">
+        <h2>Welcome To</h2>
+        <h1>Kids Wardrobe</h1>
+        <p>Unleashing Style and Fun in Children's Dressing</p>
+    </div>
+
+    <div class="shop">
+        <a href="website.html">Shop Now</a>
+    </div>
+    <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+   
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Company Name -->
+                <div class="col-md-3">
+                    <h5 class="text-uppercase mb-4 text-white">Kids Wardrobe</h5>
+                    
+                        <p>Discover the colorful journey of children's fashion through the ages, showcasing the whimsical evolution of kids' wardrobe clothing on our website.</p>
+
+                </div>
+    
+                <!-- Developer -->
+                <div class="col-md-3">
+                    <h5 class="text-uppercase mb-4 text-white">Developer</h5>
+                    <p>
+                        Trixy De Asis
+                    </p>
+                    <p>
+                        BSIT 2-3
+                    </p>
+                    <P>
+                        Date of publication: September 08, 2023
+                        Last edited: September 09, 2023
+                    </P>
+                </div>
+    
+                <!-- Faqs -->
+                <div class="col-md-3">
+                    <h5 class="text-uppercase mb-4 text-white">Contact Us</h5>
+                        <p>
+                            <i class="fas fa-home mr-2">&nbsp;Cavite State University</i>
+                        </p>
+                        <p>
+                            <i class="fas fa-envelope mr-2">&nbsp;trixy@gmail.com</i>
+                        </p>
+                        <p>
+                            <i class="fas fa-phone mr-2"> &nbsp;3162859445</i>
+                        </p>
+                        <p>
+                            <i class="fas fa-print	 mr-2">&nbsp;+01 335 633 77</i>
+                        </p>
+                </div>
+    
+                <!-- Socials -->
+                <div class="col-md-3">
+                    <h5 class="text-uppercase mb-4 text-white">Socials</h5>
+                    <a href="#" class="text-white" style="text-decoration: none; margin-right: 15px;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-white" style="text-decoration: none; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white" style="text-decoration: none; margin-right: 15px;"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-white" style="text-decoration: none;"><i class="fab fa-instagram"></i></a>
+                </div>
+    
+                <!-- All Rights Reserved -->
+                <div class="col-md-12 text-center mt-4">
+                    <br>
+                    <br>
+                    <p>&copy; 2023 Kids Wardrobe. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

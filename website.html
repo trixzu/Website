@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" crossorigin="anonymous" />
+  
+  <title>My Clothing Store</title>
+  <style>
+    /* CSS styling for the page */
+    body {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url(a.jpg);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header-container {
+      text-align: center;
+    }
+
+    header {
+      background-color: rgba(128, 128, 128, .6);
+      color: hsl(0, 0%, 98%);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    header .title{
+      margin-right: 280px;
+      color: hsl(0, 12%, 95%);
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: black;
+    }
+    header .logo {
+      margin-left: 430px;
+    }
+    
+    header .logo img {
+      height: 70px;
+      width: 70px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: 'Courier New', Courier, monospace;
+      display: inline-block;
+    }
+    .description{
+      margin: 0;
+      display: inline-block;
+      margin-right: 280px;
+
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 19px auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .sidebar {
+      float: left;
+      width: 220px;
+      height: 250px;
+      padding: 10px;
+      position: fixed;
+      left: 10px;
+      top: 110px;
+      transition: 0.3s, ease-out;
+    }
+
+    .sidebar h2{
+      color: #fefcfc;
+    }
+
+    .sidebar a {
+      display: block;
+      margin-bottom: 10px;
+      color: #fefcfc;
+      text-decoration: none;
+    }
+
+    .products {
+      margin-left: 20px;
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    
+    .image img {
+      height: 100%;
+      width: 100%;
+    }
+
+    .product {
+      display: inline-block;
+      width: 200px;
+      margin: 0 10px 20px;
+      padding: 15px;
+      border: 2px solid #070707;
+      background-color: rgb(193, 228, 208);
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .product h2 {
+      margin: 0;
+    }
+
+    .product p {
+      margin: 10px 0;
+    }
+    .cart-icon {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+.add-to-cart{
+  background: white;
+	text-align: center;
+	color: black;
+	padding: 5px;
+	border-radius: 25px;
+	cursor: pointer;
+	width: 150px;
+}
+
+.add-to-cart:hover{
+  background: gray;
+	text-align: center;
+	color: white;
+	padding: 5px;
+	border-radius: 25px;
+	cursor: pointer;
+	width: 150px;
+}
+.checkout-item .add-to-cart-icon {
+  display: inline-block;
+  font-size: 20px;
+  color: #0a0a0a;
+  margin-left: 10px;
+}
+
+/* Media query for small screens */
+@media screen and (max-width: 480px) {
+  .checkout-item .add-to-cart-icon {
+    display: block;
+    margin-top: 10px;
+  }
+}
+
+.cart-item-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: #181616;
+  color: #f8f3f3;
+  font-size: 24px; /* Increased font-size for larger cart icon */
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.cart-dropdown {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  display: none;
+  border-radius: 1px;
+}
+
+.cart-dropdown .cart-dropdown-container {
+  position: relative;
+}
+
+.cart-dropdown .cart-dropdown-content {
+  display: none;
+  position: relative;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 30px;
+  min-width: 350px;
+  z-index: 1;
+}
+
+.cart-dropdown.show .cart-dropdown-content {
+  display: block;
+}
+
+/* Add styles for the cart item image container */
+.cart-item-image {
+  display: flex;
+  align-items: center; /* Align the image and text vertically */
+  margin-right: 10px; /* Adjust the spacing between the icon and text */
+}
+
+/* Style the image icon */
+.cart-item-image img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
+/* Adjust the spacing between the cart items in the cart dropdown */
+.cart-dropdown-content > div {
+  margin-bottom: 10px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  /* Set the flex-direction to row to display the icon before the text */
+  flex-direction: row;
+}
+
+/* Separate the icon from the item name and price */
+.cart-item span {
+  margin-right: 10px;
+}
+.cart-dropdown.show .checkout-button-sticky {
+  display: block;
+  position: relative;
+  padding: 10px 30px;
+  right: 0px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+}
+  .custom-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center items vertically in the header */
+  }
+      
+    .delete-icon {
+      cursor: pointer;
+     color: red;
+      margin-left: 5px;
+    }
+
+    .delete-icon:hover {
+      color: darkred;
+    }
+
+    .description button:hover{
+     background: #fff;
+     color: #000;
+    }
+
+  .home-icon {
+    margin-right: 20px; /* Adjust the margin as needed to separate the home icon from the logo */
+  }
+  footer {
+    clear: both;
+    position: relative;
+    margin-top: 20px;
+    background-color: aliceblue;
+     /* Adjust the margin as needed */
+  }
+
+  /* Add CSS to push content above the footer down */
+  .push-content-down {
+    margin-bottom: 100px; /* Adjust the margin as needed */
+  }
+  </style>
+</head>
+<body class="push-content-down"> <!-- Add this class to the body -->
+
+  <header class="custom-header-container">
+    <div class="home-icon">
+      <a href="home.html">
+          <i class="fas fa-home fa-2x" style="color: black; "></i> <!-- Make it bigger and black -->
+      </a>
+   </div>
+    <div class="logo">
+      <img src="LG.png" width="70" height="70">
+    </div>
+    <div class="header-title">
+      <h1 class = "title"><b>Kids Wardrobe</b></h1>
+      <p class="description">Shop for the latest trends</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="products">
+      <div class="sidebar">
+        <h2>Categories</h2>
+        <a href="#all">All</a>
+        <a href="#tops">Tops</a>
+        <a href="#bottoms">Bottoms</a>       
+      </div>
+      <div class="col-md-4 product tops" data-image="T-shirt2.jpg">
+            <h2>T-Shirt</h2>
+            <div class="image">
+              <img src="T-shirt2.jpg" class="img-responsive">
+            </div>
+            <p>Price: $20.99</p>
+            <div class="text-center"> <!-- Add text-center class here -->
+              <button class="btn btn-primary add-to-cart">Add to Cart</button>
+          </div>
+          </div>
+
+      <div class="col-md-4 product tops" data-image="T-shirt6.jpg">
+        <h2>T-Shirt</h2>
+        <div class="image">
+          <img src="T-shirt6.jpg">
+        </div>
+        <p>Price: $19.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops" data-image="T-shirt3.jpg">
+        <h2>T-Shirt</h2>
+        <div class="image">
+          <img src="T-shirt3.jpg">
+        </div>
+        <p>Price: $17.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>T-Shirt</h2>
+        <div class="image">
+          <img src="T-shirt4.jpg">
+        </div>
+        <p>Price: $16.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>T-shirt(girls)</h2>
+        <div class="image">
+          <img src="T-shirt9.jpg">
+        </div>
+        <p>Price: $13.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>T-shirt(girls)</h2>
+        <div class="image">
+          <img src="g8.jpg">
+        </div>
+        <p>Price: $12.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>T-shirt(girls)</h2>
+        <div class="image">
+          <img src="g7.jpg">
+        </div>
+        <p>Price: $18.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>Blouse</h2>
+        <div class="image">
+          <img src="s2.jpg">
+        </div>
+        <p>Price: $21.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>Blouse</h2>
+        <div class="image">
+          <img src="s7.jpg">
+        </div>
+        <p>Price: $25.59</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>Blouse</h2>
+        <div class="image">
+          <img src="T-shirt10.jpg">
+        </div>
+        <p>Price: $14.89</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>Polo</h2>
+        <div class="image">
+          <img src="T-shirt5.jpg">
+        </div>
+        <p>Price: $15.09</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>Polo</h2>
+        <div class="image">
+          <img src="s5.jpg">
+        </div>
+        <p>Price: $15.59</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>Polo</h2>
+        <div class="image">
+          <img src="s6.jpg">
+        </div>
+        <p>Price: $11.59</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>Jacket</h2>
+        <div class="image">
+          <img src="T-shirt7.jpg">
+        </div>
+        <p>Price: $19.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>Jacket</h2>
+        <div class="image">
+          <img src="T-shirt8.jpg">
+        </div>
+        <p>Price: $10.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>Jacket</h2>
+        <div class="image">
+          <img src="T-shirt11.jpg">
+        </div>
+        <p>Price: $11.80</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product tops">
+        <h2>Jacket</h2>
+        <div class="image">
+          <img src="T-shirt12.jpg">
+        </div>
+        <p>Price: $15.70</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product bottoms">
+        <h2>Pants</h2>
+        <div class="image">
+          <img src="Short3.jpg">
+        </div>
+        <p>Price: $25.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product bottoms">
+        <h2>Pants</h2>
+        <div class="image">
+          <img src="Short7.jpg">
+        </div>
+        <p>Price: $15.80</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+      
+      <div class="col-md-4 product bottoms">
+        <h2>Pants</h2>
+        <div class="image">
+          <img src="Short8.jpg">
+        </div>
+        <p>Price: $12.88</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product bottoms">
+        <h2>Short</h2>
+        <div class="image">
+          <img src="Short 1.jpg">
+        </div>
+        <p>Price: $3.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product bottoms">
+        <h2>Short</h2>
+        <div class="image">
+          <img src="s1.jpg">
+        </div>
+        <p>Price: $1.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product bottoms">
+        <h2>Short</h2>
+        <div class="image">
+          <img src="s.jpg">
+        </div>
+        <p>Price: $13.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product bottoms">
+        <h2>Short(girls)</h2>
+        <div class="image">
+          <img src="g5.jpg">
+        </div>
+        <p>Price: $10.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+      
+      <div class="col-md-4 product bottoms">
+        <h2>Short(girls)</h2>
+        <div class="image">
+          <img src="g4.jpg">
+        </div>
+        <p>Price: $9.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+      
+      <div class="col-md-4 product bottoms">
+        <h2>Short(girls)</h2>
+        <div class="image">
+          <img src="g3.jpg">
+        </div>
+        <p>Price: $2.09</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+      
+      <div class="col-md-4 product bottoms">
+        <h2>Short(girls)</h2>
+        <div class="image">
+          <img src="g1.jpg">
+        </div>
+        <p>Price: $4.99</p>
+        <div class="text-center"> 
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product bottoms">
+        <h2>Skirt</h2>
+        <div class="image">
+          <img src="s3.jpg">
+        </div>
+        <p>Price: $6.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+      <div class="col-md-4 product bottoms">
+        <h2>Skirt</h2>
+        <div class="image">
+          <img src="s4.jpg">
+        </div>
+        <p>Price: $5.99</p>
+        <div class="text-center"> <!-- Add text-center class here -->
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+      </div>
+      </div>
+
+  
+
+      <div class="cart-icon">
+        <i class="fas fa-shopping-cart fa-2x" style="color: black;"></i>
+        <span class="cart-item-count">0</span>
+        <div class="cart-dropdown">
+          <div class="cart-dropdown-container">
+            <div class="cart-dropdown-content"></div>
+            <a href="checkout.html" class="btn btn-success checkout-button-sticky" onclick="passItems()">Checkout</a>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+  <footer class="bg-dark text-white py-5">
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <!-- Company Name -->
+            <div class="col-md-3">
+                <h4 class="text-uppercase mb-4 text-white">&nbsp;&nbsp;&nbsp;<b>Kids Wardrobe</b></h4>    
+                    <p>Discover the colorful journey of children's fashion through the ages, showcasing the whimsical evolution of kids' wardrobe clothing on our website.</p>
+            </div>
+
+            <!-- Developer -->
+            <div class="col-md-3">
+                <h4 class="text-uppercase mb-4 text-white">&nbsp;&nbsp;&nbsp;<b>Developer</b></h4>
+                <p>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trixy De Asis<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BSIT 2-3
+                </p>
+                <P>
+                    Date of publication: September 08, 2023<br>
+                    Last edited: September 09, 2023
+                </P>
+            </div>
+
+            <!-- Faqs -->
+            <div class="col-md-3">
+                <h4 class="text-uppercase mb-4 text-white"><b>&nbsp;&nbsp;&nbsp;Contact Us</b></h4>
+                    <p>
+                        <i class="fas fa-home mr-2">&nbsp;Cavite State University</i>
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope mr-2">&nbsp;trixy@gmail.com</i>
+                    </p>
+                    <p>
+                        <i class="fas fa-phone mr-2"> &nbsp;3162859445</i>
+                    </p>
+                    <p>
+                        <i class="fas fa-print	 mr-2">&nbsp;+01 335 633 77</i>
+                    </p>
+            </div>
+
+            <!-- Socials -->
+            <div class="col-md-3">
+                <h4 class="text-uppercase mb-4 text-white"> &nbsp;&nbsp;&nbsp;<b>Socials</b></h4>
+                <a href="#" class="text-white" style="text-decoration: none; margin-right: 15px;"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white" style="text-decoration: none; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white" style="text-decoration: none; margin-right: 15px;"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white" style="text-decoration: none;"><i class="fab fa-instagram"></i></a>
+            </div>
+
+            <!-- All Rights Reserved -->
+            <div class="col-md-12 text-center mt-4">
+              <br>
+<br>
+                <p>&copy; 2023 Kids Wardrobe. All Rights Reserved.</p>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</footer>
+
+  <script>
+    const sidebarLinks = document.querySelectorAll('.sidebar a');
+    const products = document.querySelectorAll('.product');
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartItemCount = document.querySelector('.cart-item-count');
+    const cartDropdown = document.querySelector('.cart-dropdown');
+    const cartDropdownContent = document.querySelector('.cart-dropdown-content');
+      let cartItems = [];
+
+    document.addEventListener('DOMContentLoaded', function () {
+    sidebarLinks.forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      const category = link.getAttribute('href').substring(1);
+      filterProducts(category);
+    });
+  });
+
+  products.forEach(function (product) {
+    const addToCartButton = product.querySelector('.add-to-cart');
+
+    addToCartButton.addEventListener('click', function () {
+      const productName = product.querySelector('h2').textContent;
+      const productPrice = product.querySelector('p').textContent;
+      const productImage = product.querySelector('img');
+      const productImageSrc = product.querySelector('img')
+      addToCart(productName, productPrice, productImage, productImageSrc);
+    });
+  });
+
+  function filterProducts(category) {
+    products.forEach(function (product) {
+      if (category === 'all' || product.classList.contains(category)) {
+        product.style.display = 'inline-block';
+      } else {
+        product.style.display = 'none';
+      }
+    });
+  }
+
+  function addToCart(name, price, image, image_src) {
+    const item = { name: name, price: price, image: image, image_src: image.src };
+    cartItems.push(item);
+    updateCart();
+  }
+  function removeCartItem(index) {
+    cartItems.splice(index, 1);
+    updateCart();
+  }
+
+  function updateCart() {
+  const itemCount = cartItems.length;
+  cartItemCount.textContent = itemCount;
+
+  cartDropdownContent.innerHTML = '';
+
+  if (itemCount === 0) {
+    cartDropdownContent.textContent = 'Your cart is empty.';
+  } else {
+    cartItems.forEach(function (item, index) {
+      const cartItem = document.createElement('div');
+      cartItem.classList.add('cart-item'); // Add the 'cart-item' class for flex layout
+
+      const imageContainer = document.createElement('div');
+      imageContainer.classList.add('cart-item-image');
+
+      const imageIcon = document.createElement('img');
+      imageIcon.src = item.image.src;
+
+      imageContainer.appendChild(imageIcon);
+      cartItem.appendChild(imageContainer); // Append the image container first
+
+      const itemNameSpan = document.createElement('span');
+      itemNameSpan.textContent = item.name;
+      cartItem.appendChild(itemNameSpan); // Append the item name after the image container
+
+      const itemPriceSpan = document.createElement('span');
+      itemPriceSpan.textContent = ' - ' + item.price;
+      cartItem.appendChild(itemPriceSpan); // Append the item price
+
+      const deleteIcon = document.createElement('i');
+      deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
+      deleteIcon.addEventListener('click', function () {
+        removeCartItem(index);
+      });
+
+      cartItem.appendChild(deleteIcon);
+
+      cartDropdownContent.appendChild(cartItem);
+    });
+  }
+}
+
+    cartIcon.addEventListener('click', function () {
+        cartDropdown.classList.toggle('show');
+      });
+    });
+
+    function passItems() {
+      sessionStorage.setItem('ItemArray', JSON.stringify(cartItems));
+        window.location.href = 'checkout.html';
+    }
+
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      const scrollingElement = document.querySelector('.sidebar');
+      const headerHeight = header.offsetHeight;
+      const scrollTop = window.scrollY;
+  
+      if (scrollTop >= headerHeight) {
+          scrollingElement.style.top = '0';
+      } else {
+          scrollingElement.style.top = headerHeight - scrollTop + 'px';
+      }
+  });
+
+  </script>
+  
+</body>
+</html>

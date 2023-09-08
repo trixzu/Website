@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+body{
+  background-image: url('a.jpg'); /* Replace with the path to your image */
+  background-size: cover; /* Cover the entire background */
+  position: relative;
+}
+
+
+.contact-us {
+  width: 320px; /* Increase the width if needed */
+  background: #fff;
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  margin: 100px auto;
+  border-radius: 30px;
+  position: relative;
+  border: 2px solid #000;
+}
+
+
+.title h1{
+  color: #835C3B;
+  letter-spacing: 5px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form,
+.form-items{
+  width: 100%;
+}
+
+.form-items .input{
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 15px 40px 15px 55px; /* Adjust the left padding to make room for the icons */
+  box-sizing: border-box;
+  box-shadow: 4px 2px 4px rgba(0,0,0,.3);
+  background: #ebeef1;
+  border: 0px;
+  outline: none;
+  border-radius: 30px;
+}
+
+.form-items .input.message{
+  height: 125px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  padding: 15px 15px;
+  resize: none;
+}
+
+.btn{
+  background: #5d5d5d;
+  text-align: center;
+  color: #5d5d5d;
+  padding: 12px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  vertical-align: middle;
+  margin-bottom: auto;
+}
+
+.btn .fas{
+  margin-left: 10px;
+  font-size: 12px;
+
+}
+
+.form-items{
+  position: relative;
+}
+
+.form-items .fas{
+  position: absolute;
+  top: 20px;
+  left: 20px; /* Adjust the left position as needed */
+  color: #835C3B;
+}
+
+.social-icons{
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  width: 200px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-around;
+}
+
+.social-icons div{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+
+.social-icons div .fab{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: #fff;
+}
+
+.social-icons div.facebook{
+  background: #5178d9;
+}
+
+.social-icons div.twitter{
+  background: #41caf6;
+}
+
+.social-icons div.google{
+  background: #fb4f4f;
+}
+</style>
+  <script>
+    // JavaScript function to redirect user to home.html when the submit button is clicked
+    function redirectToHome() {
+      alert("We will get back to you ASAP")
+      window.location.href = "home.html";
+    }
+  </script>
+</head>
+<body>
+<div class="contact-us">
+  <div class="title">
+      <h3 style="color:#474645"><b>Contact Us</b></h3>
+  </div>
+  <div class="form">
+    <div class="form-items">
+      <input type="text" class="input" placeholder="Username">
+      <i class="fas fa-user"></i>
+    </div>
+    <div class="form-items">
+      <input type="text" class="input" placeholder="Email">
+      <i class="fas fa-envelope"></i>
+    </div>
+    <div class="form-items">
+      <textarea class="input message" cols="30" rows="10" placeholder="Message....."></textarea>
+    </div>
+  </div>
+    <center>
+  <div class="btn" onclick="redirectToHome()">
+    <input type="submit" value="Submit" class="submit-btn">
+  </div>
+</center>
+  <div class="social-icons">
+    <div class="facebook">
+      <i class="fab fa-facebook-f"></i>
+    </div>
+    <div class="twitter">
+      <i class="fab fa-twitter"></i>
+    </div>
+    <div class="google">
+      <i class="fab fa-google-plus-g"></i>
+    </div>
+  </div>
+
+</div>
+<footer class="bg-dark text-white py-4">
+  <div class="container">
+      <div class="row">
+          <!-- Company Name -->
+          <div class="col-md-3">
+    <center>
+              <h5 class="text-uppercase mb-4 text-white">Kids Wardrobe</h5>
+    </center>
+                  <p class="text-sm-center">Discover the colorful journey of children's fashion through the ages, showcasing the whimsical evolution of kids' wardrobe clothing on our website.</p>
+
+          </div>
+
+          <!-- Developer -->
+          <div class="col-md-3">
+              <h5 class="text-uppercase mb-4 text-white text-sm-center">Developer</h5>
+              <p class="text-sm-center">
+                  Trixy De Asis
+              </p>
+              <p class="text-sm-center">BSIT 2-3</p>
+              <P class="text-sm-center">
+                  Date of publication: September 08, 2023
+    </p class="text-sm-center">
+    <p class="text-sm-center">
+                  Last edited: September 09, 2023
+              </P>
+          </div>
+
+          <!-- Faqs -->
+          <div class="col-md-3 text-sm-center">
+              <h5 class="text-uppercase mb-4 text-white">Contact Us</h5>
+                  <p class="text-sm-center">
+                      <i class="fas fa-home mr-2 text-sm-center">&nbsp;Cavite State University</i>
+                  </p>
+                  <p class="text-sm-center">
+                      <i class="fas fa-envelope mr-2 text-sm-center">&nbsp;trixy@gmail.com</i>
+                  </p>
+                  <p class="text-sm-center">
+                      <i class="fas fa-phone mr-2 "> &nbsp;3162859445</i>
+                  </p>
+                  <p class="text-sm-center">
+                      <i class="fas fa-print	 mr-2">&nbsp;+01 335 633 77</i>
+                  </p>
+          </div>
+<br>
+          <!-- Socials -->
+          <div class="col-md-3">
+              <h5 class="text-uppercase mb-4 text-white">Socials</h5>
+              <a href="#" class="text-white text-sm-center" style="text-decoration: none; margin-right: 15px;"><i class="fab fa-facebook text-sm-center"></i></a>
+              <a href="#" class="text-white" style="text-decoration: none; margin-right: 15px;"><i class="fab fa-twitter text-sm-center"></i></a>
+              <a href="#" class="text-white" style="text-decoration: none; margin-right: 15px;"><i class="fab fa-linkedin text-sm-center"></i></a>
+              <a href="#" class="text-white" style="text-decoration: none;"><i class="fab fa-instagram text-sm-center"></i></a>
+          </div>
+
+          <!-- All Rights Reserved -->
+          <div class="col-md-12 text-center mt-4">
+              <br>
+              <br>
+              <p>&copy; 2023 Kids Wardrobe. All Rights Reserved.</p>
+          </div>
+      </div>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
